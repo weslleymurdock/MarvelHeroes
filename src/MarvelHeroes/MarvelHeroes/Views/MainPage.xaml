@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewmodels="clr-namespace:MarvelHeroes.ViewModels"
+             x:DataType="viewmodels:MainPageViewModel"
+             x:Class="MarvelHeroes.Views.MainPage" >
+
+    <StackLayout BackgroundColor="White">
+        <StackLayout Padding="30,20,0,0" Orientation="Horizontal">
+            <Label Text="Busca" 
+                       TextTransform="Uppercase" 
+                       HorizontalTextAlignment="Start" 
+                       FontAttributes="Bold" 
+                       TextColor="#d42026" 
+                       TextDecorations="Underline" 
+                       FontSize="16" />
+            <Label Text=" Marvel" 
+                       TextTransform="Uppercase" 
+                       FontAttributes="Bold" 
+                       TextColor="#d42026" 
+                       FontSize="16" 
+                       Padding="-5,0,0,0" />
+            <Label Text=" Teste Frontend" 
+                       TextTransform="Uppercase" 
+                       TextColor="#d42026" 
+                       FontSize="16" 
+                       Padding="-5,0,0,0" />
+        </StackLayout>
+
+        <StackLayout  Padding="30,20,0,0" Orientation="Vertical">
+            <Label Text="Nome do Personagem"  
+                       TextColor="#d42026"  
+                       FontSize="16" />
+            <SearchBar Text="{Binding SearchText}" 
+	                       SearchCommand="{Binding SearchByNameCommand}" />
+
+        </StackLayout>
+
+        <StackLayout HeightRequest="50" BackgroundColor="#d42026" Orientation="Vertical">
+            <Label Padding="100,10,0,0"
+                   Text="Nome"  
+                   TextColor="White"  
+                   FontSize="16" />
+        </StackLayout>
+
+        <StackLayout  BackgroundColor="White" >
+            <ListView IsPullToRefreshEnabled="True" 
+                          HorizontalOptions="FillAndExpand" 
+                          VerticalOptions="FillAndExpand" 
+                          ItemsSource="{Binding Heroes}" 
+                          CachingStrategy="RecycleElement" 
+                          RefreshCommand="{Binding RefreshCommand}" 
+                          IsRefreshing="{Binding IsBusy}">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="viewmodels:HeroViewModel">
+                        <ViewCell>
+                            <StackLayout VerticalOptions="CenterAndExpand" HeightRequest="250" BackgroundColor="#eee" Orientation="Horizontal">
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding HeroPageCommand}" />
+                                </StackLayout.GestureRecognizers>
+                                <Image Source="{Binding Thumbnail}" >
+                                    <Image.Clip>
+                                        <EllipseGeometry RadiusX="200"
+                                                            RadiusY="200"  />
+                                    </Image.Clip>
+                                </Image>
+                                <Label VerticalOptions="Center" Text="{Binding Name}" TextColor="Black" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+        <StackLayout  BackgroundColor="White"  Orientation="Horizontal" VerticalOptions="End" >
+            <Polygon Points=" 0,50 80,100, 80,0" Stroke="#d42026" Fill="#d42026" HorizontalOptions="Start" VerticalOptions="Center" >
+                <Polygon.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding PreviousPageCommand}" />
+                </Polygon.GestureRecognizers>
+            </Polygon>
+
+            <Frame HeightRequest="80" WidthRequest="80" BorderColor="#d42026" CornerRadius="40" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Margin="0" Padding="0" BackgroundColor="{Binding FirstLabelColor }">
+                <Label Text="{Binding FirstLabel}" TextColor="{Binding FirstLabelTextColor}" HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            </Frame>
+            <Frame HeightRequest="80" WidthRequest="80" BorderColor="#d42026" CornerRadius="40" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Margin="0" Padding="0" BackgroundColor="{Binding SecondLabelColor }">
+                <Label Text="{Binding SecondLabel}" TextColor="{Binding SecondLabelTextColor}" HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            </Frame>
+            <Frame HeightRequest="80" WidthRequest="80" BorderColor="#d42026" CornerRadius="40" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Margin="0" Padding="0" BackgroundColor="{Binding ThirdLabelColor }">
+                <Label Text="{Binding ThirdLabel}" TextColor="{Binding ThirdLabelTextColor}" HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            </Frame>
+            <Polygon Points="0,0 80,50, 0,100" Stroke="#d42026" Fill="#d42026" HorizontalOptions="End" VerticalOptions="Center" >
+                <Polygon.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding NextPageCommand}" />
+                </Polygon.GestureRecognizers>
+            </Polygon>
+        </StackLayout>
+    </StackLayout>
+
+</ContentPage>

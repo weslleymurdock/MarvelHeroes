@@ -15,7 +15,7 @@ jobs:
     
     - name: Set default Xcode 14.3
       run: |
-        XCODE_ROOT=/Applications/Xcode_14.3.app
+        XCODE_ROOT=/Applications/Xcode.app
         echo "MD_APPLE_SDK_ROOT=$XCODE_ROOT" >> $GITHUB_ENV
         sudo xcode-select -s $XCODE_ROOT
 

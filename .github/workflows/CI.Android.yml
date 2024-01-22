@@ -19,7 +19,7 @@ jobs:
         dotnet-version: '7.0.x'
 
     - name: Install dependencies
-      run: nuget restore <sln_file_path>
+      run: nuget restore ${{github.workspace}}/src/MarvelHeroes.sln
 
     - name: Build
       run: msbuild ${{github.workspace}}/src/MarvelHeroes/MarvelHeroes.Android.csproj /t:PackageForAndroid /p:Configuration=Debug

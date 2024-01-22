@@ -22,4 +22,4 @@ jobs:
       run: nuget restore ${{github.workspace}}/src/ObjectiveMarvelHeroes.sln
 
     - name: Build
-      run: msbuild ${{github.workspace}}/src/MarvelHeroes/MarvelHeroes.Android.csproj /t:PackageForAndroid /p:Configuration=Debug
+      run: msbuild ${{github.workspace}}/src/MarvelHeroes/MarvelHeroes.Android/MarvelHeroes.Android.csproj /t:PackageForAndroid /p:Configuration=Debug

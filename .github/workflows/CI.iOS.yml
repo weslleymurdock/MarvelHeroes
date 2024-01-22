@@ -28,4 +28,4 @@ jobs:
       run: nuget restore ${{github.workspace}}/src/ObjectiveMarvelHeroes.sln
 
     - name: Build
-      run: msbuild ${{github.workspace}}/src/MarvelHeroes/MarvelHeroes.iOS.csproj /p:Configuration=Debug /p:Platform=iPhoneSimulator /t:Rebuild
+      run: msbuild ${{github.workspace}}/src/MarvelHeroes/MarvelHeroes.iOS/MarvelHeroes.iOS.csproj /p:Configuration=Debug /p:Platform=iPhoneSimulator /t:Rebuild
